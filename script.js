@@ -17,11 +17,27 @@ function addBookToLibrary(title, author, numberOfPages, read) {
   // take params, create a book then store it in the array
 }
 
-const hobbit = new Book("hobbit", "tolkien", "345", "not read");
-console.log(hobbit.info())
 addBookToLibrary("hobbit1", "tolkien", "345", "not read")
-addBookToLibrary("hobbit2", "tolkien", "345", "not read")
-addBookToLibrary("hobbit3", "tolkien", "345", "not read")
+
+const form = document.querySelector("#book-form");
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const title = document.querySelector("#title").value;
+    const author = document.querySelector("#author").value;
+    const pages = Number(document.querySelector("#pages").value);
+    const read = document.querySelector("#read").checked;
+
+    addBookToLibrary(title, author, pages, read);
+
+    form.reset();
+    writeAll()
+});
+
+document.querySelector("#new-book-btn").addEventListener("click", () => {
+    document.querySelector("#book-dialog").showModal();
+});
 
 function writeAll(){
     for (let book of myLibrary){
